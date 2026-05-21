@@ -1,0 +1,40 @@
+import matplotlib.pyplot as plt
+
+def tinh_dien_tich(coords):
+    """Tính diện tích đa giác bằng công thức Shoelace"""
+    n = len(coords)
+    area = 0.0
+    for i in range(n):
+        j = (i + 1) % n
+        area += coords[i][0] * coords[j][1]
+        area -= coords[j][0] * coords[i][1]
+    return abs(area) / 2.0
+
+# Danh sách tọa độ (X, Y) - Bạn có thể thay bằng tọa độ thực tế từ bài tập
+# Ví dụ 4 điểm của một khu vực khảo sát
+points = [
+    (584200.5, 2315600.2),
+    (584350.8, 2315650.5),
+    (584400.2, 2315500.1),
+    (584250.1, 2315450.9)
+]
+
+# 1. Tính diện tích
+dt = tinh_dien_tich(points)
+print(f"--- KẾT QUẢ TÍNH TOÁN ---")
+print(f"Diện tích khu vực là: {dt:.2f} m2")
+
+# 2. Vẽ sơ đồ minh họa trong VS Code
+x, y = zip(*points + [points[0]]) # Thêm điểm đầu vào cuối để khép kín hình khi vẽ
+plt.figure(figsize=(7, 7))
+plt.plot(x, y, marker='o', color='red', linewidth=2)
+plt.fill(x, y, alpha=0.2, color='red')
+
+# Ghi chú tọa độ lên từng điểm
+for i, txt in enumerate(points):
+    plt.annotate(f"P{i+1}", (points[i][0], points[i][1]), textcoords="offset points", xytext=(0,10), ha='center')
+
+plt.title(f"Sơ đồ thửa đất (Diện tích: {dt:.2f} m2)")
+plt.gca().set_aspect('equal', adjustable='box') # Giữ đúng tỉ lệ hình học
+plt.grid(True)
+plt.show()

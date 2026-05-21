@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n;
+    
+    // Nhập và kiểm tra điều kiện 0 < n < 200
+    do {
+        cout << "Nhap so luong phan tu n (0 < n < 200): ";
+        cin >> n;
+        if (n <= 0 || n >= 200) {
+            cout << "So n khong hop le, vui long nhap lai!" << endl;
+        }
+    } while (n <= 0 || n >= 200);
+
+    vector<int> x(n);
+    long long tongChan = 0;
+
+    // Nhập dãy số nguyên và tính tổng các số chẵn
+    cout << "Nhap cac phan tu cua day:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "x[" << i + 1 << "] = ";
+        cin >> x[i];
+        
+        // Kiểm tra số chẵn (chia hết cho 2)
+        if (x[i] % 2 == 0) {
+            tongChan += x[i];
+        }
+    }
+
+    // Hiển thị tổng các phần tử chẵn
+    cout << "\nTong cac phan tu chan trong day la: " << tongChan << endl;
+
+    // Kiểm tra hai điều kiện: chia hết cho 7 và nhỏ hơn 200
+    bool chiaHetCho7 = (tongChan % 7 == 0);
+    bool nhoHon200 = (tongChan < 200);
+
+    cout << "Kiem tra dieu kien:" << endl;
+    
+    if (chiaHetCho7 && nhoHon200) {
+        cout << "=> Tong nay THOA MAN ca hai dieu kien (chia het cho 7 va nho hon 200)." << endl;
+    } else {
+        cout << "=> Tong nay KHONG THOA MAN dong thoi hai dieu kien." << endl;
+        
+        // Thông báo chi tiết lỗi điều kiện nào
+        if (!chiaHetCho7) cout << "   + Ly do: Tong khong chia het cho 7." << endl;
+        if (!nhoHon200)  cout << "   + Ly do: Tong khong nho hon 200." << endl;
+    }
+
+    return 0;
+}
