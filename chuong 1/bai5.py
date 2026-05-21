@@ -1,0 +1,5 @@
+matrix=eval(input("Nhap ma tran 4x3 duoi dang tuple:"))
+print(*matrix[0])
+print(*matrix[1])
+print(*matrix[2])
+print(*matrix[3])
