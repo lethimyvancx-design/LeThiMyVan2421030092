@@ -1,0 +1,5 @@
+f=open("e:\\toan co.txt","r")
+l1=f.readline()
+print(l1)
+l2=f.readline()
+print(l2)
